@@ -32,7 +32,7 @@ export function RealTimeChart({ data, currentReading }: RealTimeChartProps) {
         <CardHeader>
           <CardTitle>Impact Magnitude (Real-time)</CardTitle>
           <CardDescription>
-            Acceleration magnitude from both sensors. Red line indicates potential concussion threshold (15g)
+            Acceleration magnitude from both sensors. Red line indicates potential concussion threshold (100g)
           </CardDescription>
         </CardHeader>
         <CardContent>

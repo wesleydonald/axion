@@ -79,65 +79,6 @@ export function ImpactAnalysis({ data }: ImpactAnalysisProps) {
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Impact Distribution */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Impact Severity Distribution</CardTitle>
-            <CardDescription>Breakdown of impact levels during session</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={pieData}
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={80}
-                    dataKey="value"
-                    label={({ name, value }) => `${name}: ${value}`}
-                  >
-                    {pieData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* High Impact Timeline */}
-        <Card>
-          <CardHeader>
-            <CardTitle>High Impact Events</CardTitle>
-            <CardDescription>Timeline of significant impacts (≥15g)</CardDescription>
-          </CardHeader>
-          <CardContent>
-            {timelineData.length > 0 ? (
-              <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={timelineData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="time" tick={{ fontSize: 12 }} />
-                    <YAxis label={{ value: "Magnitude (g)", angle: -90, position: "insideLeft" }} />
-                    <Tooltip formatter={(value: number) => [`${value.toFixed(2)}g`, "Impact"]} />
-                    <Bar
-                      dataKey="magnitude"
-                      fill={(entry) => (entry?.severity === "CRITICAL" ? "#ef4444" : "#f97316")}
-                    />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            ) : (
-              <div className="h-64 flex items-center justify-center text-gray-500">No high impact events recorded</div>
-            )}
-          </CardContent>
-        </Card>
-      </div>
-
       {/* Medical Recommendations */}
       <Card>
         <CardHeader>
@@ -191,6 +132,65 @@ export function ImpactAnalysis({ data }: ImpactAnalysisProps) {
           </div>
         </CardContent>
       </Card>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Impact Distribution */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Impact Severity Distribution</CardTitle>
+            <CardDescription>Breakdown of impact levels during session</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={pieData}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    dataKey="value"
+                    label={({ name, value }) => `${name}: ${value}`}
+                  >
+                    {pieData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* High Impact Timeline */}
+        <Card>
+          <CardHeader>
+            <CardTitle>High Impact Events</CardTitle>
+            <CardDescription>Timeline of significant impacts (≥15g)</CardDescription>
+          </CardHeader>
+          <CardContent>
+            {timelineData.length > 0 ? (
+              <div className="h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={timelineData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="time" tick={{ fontSize: 12 }} />
+                    <YAxis label={{ value: "Magnitude (g)", angle: -90, position: "insideLeft" }} />
+                    <Tooltip formatter={(value: number) => [`${value.toFixed(2)}g`, "Impact"]} />
+                    <Bar
+                      dataKey="magnitude"
+                      //fill={(entry: any) => (entry?.severity === "CRITICAL" ? "#ef4444" : "#f97316")}
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            ) : (
+              <div className="h-64 flex items-center justify-center text-gray-500">No high impact events recorded</div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
     </div>
   )
 }

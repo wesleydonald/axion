@@ -125,7 +125,7 @@ export default function AxionDashboard() {
             <Image src="/axion-logo.png" alt="AXION Logo" width={60} height={60} className="rounded-lg" />
             <div>
               <h1 className="text-3xl font-bold text-gray-900">AXION Concussion Tracker</h1>
-              <p className="text-gray-600">Real-time rugby impact monitoring system</p>
+              <p className="text-gray-600">Real-time impact monitoring system</p>
             </div>
           </div>
           <div className="flex items-center space-x-3">

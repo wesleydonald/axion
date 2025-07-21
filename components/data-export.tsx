@@ -67,7 +67,7 @@ export function DataExport({ data }: DataExportProps) {
       {
         exportDate: new Date().toISOString(),
         deviceInfo: {
-          device: "AXION Rugby Headband",
+          device: "AXION Headband",
           sensors: 2,
           samplingRate: "10Hz",
         },
