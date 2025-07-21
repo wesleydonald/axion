@@ -2,13 +2,19 @@
 
 ## Setup
 
-To clone the repo copy the http link from green button, open a terminal and run
+To clone the repo copy the https link from green button at the top of the repo, open a terminal and run
 ```
 git clone {thing you copied}
 ```
 
+To open the code (in vscode):
+```
+code axion
+```
+
 To start the local server:
 ```
+cd axion
 npm i
 npm run dev
 ```
