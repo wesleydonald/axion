@@ -11,7 +11,7 @@ import Image from "next/image"
 import { RealTimeChart } from "@/components/real-time-chart"
 import { ImpactAnalysis } from "@/components/impact-analysis"
 import { DataExport } from "@/components/data-export"
-import { PatientInfo } from "@/components/patient-info"
+import { PlayerInfo } from "@/components/player-info"
 
 interface AccelerometerData {
   timestamp: number
@@ -32,8 +32,8 @@ export default function AxionDashboard() {
   // Simulate real-time accelerometer data
   const generateMockData = (): AccelerometerData => {
     const baseAccel = () => ({
-      x: (Math.random() - 0.5) * 4,
-      y: (Math.random() - 0.5) * 4,
+      x: (Math.random() - 0.5) * 40,
+      y: (Math.random() - 0.5) * 40,
       z: 9.8 + (Math.random() - 0.5) * 2,
     })
 
@@ -52,7 +52,7 @@ export default function AxionDashboard() {
     const magnitude2 = Math.sqrt(accel2.x ** 2 + accel2.y ** 2 + accel2.z ** 2)
 
     const maxMagnitude = Math.max(magnitude1, magnitude2)
-    let impactSeverity: AccelerometerData["impactSeverity"] = "LOW"
+    let impactSeverity: AccelerometerData["impactSeverity"] = "MODERATE"
 
     if (maxMagnitude > 50) impactSeverity = "CRITICAL"
     else if (maxMagnitude > 30) impactSeverity = "HIGH"
@@ -210,9 +210,9 @@ export default function AxionDashboard() {
         {/* Main Content */}
         <Tabs defaultValue="realtime" className="space-y-4">
           <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="realtime">Real-time Data</TabsTrigger>
+            <TabsTrigger value="player">Player Info</TabsTrigger>
             <TabsTrigger value="analysis">Impact Analysis</TabsTrigger>
-            <TabsTrigger value="patient">Patient Info</TabsTrigger>
+            <TabsTrigger value="realtime">Real-time Data</TabsTrigger>
             <TabsTrigger value="export">Data Export</TabsTrigger>
           </TabsList>
 
@@ -224,8 +224,8 @@ export default function AxionDashboard() {
             <ImpactAnalysis data={data} />
           </TabsContent>
 
-          <TabsContent value="patient">
-            <PatientInfo />
+          <TabsContent value="player">
+            <PlayerInfo />
           </TabsContent>
 
           <TabsContent value="export">

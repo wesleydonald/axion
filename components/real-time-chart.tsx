@@ -48,8 +48,7 @@ export function RealTimeChart({ data, currentReading }: RealTimeChartProps) {
                     name === "magnitude1" ? "Sensor 1" : "Sensor 2",
                   ]}
                 />
-                <ReferenceLine y={15} stroke="red" strokeDasharray="5 5" label="Concussion Threshold" />
-                <ReferenceLine y={30} stroke="orange" strokeDasharray="5 5" label="High Impact" />
+                
                 <Line
                   type="monotone"
                   dataKey="magnitude1"

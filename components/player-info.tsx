@@ -10,8 +10,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox"
 import { User, FileText } from "lucide-react"
 
-export function PatientInfo() {
-  const [patientData, setPatientData] = useState({
+export function PlayerInfo() {
+  const [playerData, setPlayerData] = useState({
     name: "",
     age: "",
     position: "",
@@ -35,7 +35,7 @@ export function PatientInfo() {
   ]
 
   const handleSymptomChange = (symptom: string, checked: boolean) => {
-    setPatientData((prev) => ({
+    setPlayerData((prev) => ({
       ...prev,
       currentSymptoms: checked ? [...prev.currentSymptoms, symptom] : prev.currentSymptoms.filter((s) => s !== symptom),
     }))
@@ -44,7 +44,7 @@ export function PatientInfo() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Patient Details */}
+        {/* Player Details */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
@@ -59,8 +59,8 @@ export function PatientInfo() {
                 <Label htmlFor="name">Full Name</Label>
                 <Input
                   id="name"
-                  value={patientData.name}
-                  onChange={(e) => setPatientData((prev) => ({ ...prev, name: e.target.value }))}
+                  value={playerData.name}
+                  onChange={(e) => setPlayerData((prev) => ({ ...prev, name: e.target.value }))}
                   placeholder="Enter player name"
                 />
               </div>
@@ -69,8 +69,8 @@ export function PatientInfo() {
                 <Input
                   id="age"
                   type="number"
-                  value={patientData.age}
-                  onChange={(e) => setPatientData((prev) => ({ ...prev, age: e.target.value }))}
+                  value={playerData.age}
+                  onChange={(e) => setPlayerData((prev) => ({ ...prev, age: e.target.value }))}
                   placeholder="Age"
                 />
               </div>
@@ -79,7 +79,7 @@ export function PatientInfo() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="position">Position</Label>
-                <Select onValueChange={(value) => setPatientData((prev) => ({ ...prev, position: value }))}>
+                <Select onValueChange={(value) => setPlayerData((prev) => ({ ...prev, position: value }))}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select position" />
                   </SelectTrigger>
@@ -101,8 +101,8 @@ export function PatientInfo() {
                 <Label htmlFor="team">Team</Label>
                 <Input
                   id="team"
-                  value={patientData.team}
-                  onChange={(e) => setPatientData((prev) => ({ ...prev, team: e.target.value }))}
+                  value={playerData.team}
+                  onChange={(e) => setPlayerData((prev) => ({ ...prev, team: e.target.value }))}
                   placeholder="Team name"
                 />
               </div>
@@ -112,8 +112,8 @@ export function PatientInfo() {
               <Label htmlFor="previous">Previous Concussions</Label>
               <Input
                 id="previous"
-                value={patientData.previousConcussions}
-                onChange={(e) => setPatientData((prev) => ({ ...prev, previousConcussions: e.target.value }))}
+                value={playerData.previousConcussions}
+                onChange={(e) => setPlayerData((prev) => ({ ...prev, previousConcussions: e.target.value }))}
                 placeholder="Number of previous concussions"
               />
             </div>
@@ -135,7 +135,7 @@ export function PatientInfo() {
                 <div key={symptom} className="flex items-center space-x-2">
                   <Checkbox
                     id={symptom}
-                    checked={patientData.currentSymptoms.includes(symptom)}
+                    checked={playerData.currentSymptoms.includes(symptom)}
                     onCheckedChange={(checked) => handleSymptomChange(symptom, checked as boolean)}
                   />
                   <Label htmlFor={symptom} className="text-sm">
@@ -159,44 +159,44 @@ export function PatientInfo() {
             <Label htmlFor="notes">Clinical Notes</Label>
             <Textarea
               id="notes"
-              value={patientData.notes}
-              onChange={(e) => setPatientData((prev) => ({ ...prev, notes: e.target.value }))}
+              value={playerData.notes}
+              onChange={(e) => setPlayerData((prev) => ({ ...prev, notes: e.target.value }))}
               placeholder="Enter clinical observations, test results, and assessment notes..."
               rows={6}
             />
           </div>
 
           <div className="flex space-x-4">
-            <Button>Save Patient Data</Button>
+            <Button>Save Player Data</Button>
             <Button variant="outline">Generate Report</Button>
           </div>
         </CardContent>
       </Card>
 
       {/* Quick Assessment Summary */}
-      {(patientData.name || patientData.currentSymptoms.length > 0) && (
+      {(playerData.name || playerData.currentSymptoms.length > 0) && (
         <Card className="bg-blue-50 border-blue-200">
           <CardHeader>
             <CardTitle className="text-blue-800">Assessment Summary</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2 text-blue-700">
-              {patientData.name && (
+              {playerData.name && (
                 <p>
-                  <strong>Player:</strong> {patientData.name}
+                  <strong>Player:</strong> {playerData.name}
                 </p>
               )}
-              {patientData.position && (
+              {playerData.position && (
                 <p>
-                  <strong>Position:</strong> {patientData.position}
+                  <strong>Position:</strong> {playerData.position}
                 </p>
               )}
-              {patientData.currentSymptoms.length > 0 && (
+              {playerData.currentSymptoms.length > 0 && (
                 <p>
-                  <strong>Symptoms:</strong> {patientData.currentSymptoms.join(", ")}
+                  <strong>Symptoms:</strong> {playerData.currentSymptoms.join(", ")}
                 </p>
               )}
-              {patientData.currentSymptoms.length >= 3 && (
+              {playerData.currentSymptoms.length >= 3 && (
                 <p className="text-red-600 font-semibold">
                   ⚠️ Multiple symptoms present - Consider immediate assessment
                 </p>

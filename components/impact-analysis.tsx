@@ -167,7 +167,7 @@ export function ImpactAnalysis({ data }: ImpactAnalysisProps) {
         <Card>
           <CardHeader>
             <CardTitle>High Impact Events</CardTitle>
-            <CardDescription>Timeline of significant impacts (≥15g)</CardDescription>
+            <CardDescription>Timeline of significant impacts (≥100g)</CardDescription>
           </CardHeader>
           <CardContent>
             {timelineData.length > 0 ? (
@@ -194,3 +194,4 @@ export function ImpactAnalysis({ data }: ImpactAnalysisProps) {
     </div>
   )
 }
+
